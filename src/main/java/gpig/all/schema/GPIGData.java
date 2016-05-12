@@ -9,6 +9,6 @@ import java.util.Set;
  */
 @XmlRootElement(name="gpigdata")
 public class GPIGData {
-    @XmlElement(name="positions")
+    @XmlElement(name="gisposition")
     public Set<GISPosition> positions;
 }

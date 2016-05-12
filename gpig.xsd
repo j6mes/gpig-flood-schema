@@ -35,7 +35,7 @@
 
   <xs:complexType name="gpigData">
     <xs:sequence>
-      <xs:element name="positions" type="gisPosition" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="gisposition" type="gisPosition" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 

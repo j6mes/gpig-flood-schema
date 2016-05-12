@@ -11,5 +11,4 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="wateredge")
 public class WaterEdge extends DataType {
 
-
 }
