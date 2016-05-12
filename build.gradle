@@ -1,14 +1,75 @@
-group 'gpig.common'
-version '1.0-SNAPSHOT'
+group 'gpig.all'
 
 apply plugin: 'java'
-
-sourceCompatibility = 1.5
+apply plugin: 'maven-publish'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Common Objects for Schema',
+                'Implementation-Version': version,
+                'Built-By': System.getProperty('user.name'),
+                'Built-Date': new Date(),
+                'Built-JDK': System.getProperty('java.version'),
+                'Built-Gradle': gradle.gradleVersion,
+                'Main-Class': 'co.j6mes.infra.srf.daemon.ServiceRegistrationDaemon'
+    }
+}
+
+
+
+task sourcesJar(type: Jar) {
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('name', 'Flood Data Schema')
+                root.appendNode('description', 'A common schema for gpig flood data')
+                root.appendNode('url', 'https://github.com/j6mes/gpig-flood-schema')
+                root.appendNode('inceptionYear', '2016')
+
+                def scm = root.appendNode('scm')
+                scm.appendNode('url', 'https://github.com/j6mes/gpig-flood-schema')
+                scm.appendNode('connection', 'scm:https://j6mes@github.com/j6mes/gpig-flood-schema.git')
+                scm.appendNode('developerConnection', 'scm:git://github.com/j6mes/gpig-flood-schema.git')
+
+                def license = root.appendNode('licenses').appendNode('license')
+                license.appendNode('name', 'The Apache Software License, Version 2.0')
+                license.appendNode('url', 'http://www.apache.org/licenses/LICENSE-2.0.txt')
+                license.appendNode('distribution', 'repo')
+
+                def developers = root.appendNode('developers')
+                def j6mes = developers.appendNode('developer')
+                j6mes.appendNode('id', 'j6mes')
+                j6mes.appendNode('name', 'James Thorne')
+                j6mes.appendNode('email', 'james@jthorne.co.uk')
+            }
+        }
+    }
 }
