@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="blockage" type="blockage"/>
+
+  <xs:element name="boundingbox" nillable="true" type="xs:anyType"/>
+
+  <xs:element name="coord" type="coord"/>
+
+  <xs:element name="datatype" type="dataType"/>
+
+  <xs:element name="delivery" type="delivery"/>
+
+  <xs:element name="depth" type="depth"/>
+
+  <xs:element name="flow" type="flow"/>
+
+  <xs:element name="gate" type="gate"/>
+
+  <xs:element name="gid" type="gisPosition"/>
+
+  <xs:element name="gpigdata" type="gpigData"/>
+
+  <xs:element name="image" type="image"/>
+
+  <xs:element name="point" type="point"/>
+
+  <xs:element name="position" type="position"/>
+
+  <xs:element name="strandedperson" type="strandedPerson"/>
+
+  <xs:element name="timestamp" type="timestamp"/>
+
+  <xs:element name="wateredge" type="waterEdge"/>
+
+  <xs:complexType name="gpigData">
+    <xs:sequence>
+      <xs:element name="positions" type="gisPosition" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="gisPosition">
+    <xs:sequence>
+      <xs:element ref="position" minOccurs="0"/>
+      <xs:element ref="timestamp" minOccurs="0"/>
+      <xs:element name="value" type="dataType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="position">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="point">
+    <xs:complexContent>
+      <xs:extension base="position">
+        <xs:sequence>
+          <xs:element name="position" type="coord" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="coord">
+    <xs:sequence/>
+    <xs:attribute name="latitude" type="xs:float" use="required"/>
+    <xs:attribute name="longitude" type="xs:float" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="boundingBox">
+    <xs:complexContent>
+      <xs:extension base="position">
+        <xs:sequence>
+          <xs:element name="topleft" type="coord" minOccurs="0"/>
+          <xs:element name="topright" type="coord" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="polar">
+    <xs:complexContent>
+      <xs:extension base="position">
+        <xs:sequence>
+          <xs:element name="point" type="coord" minOccurs="0"/>
+          <xs:element name="radius" type="xs:float"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="poly">
+    <xs:complexContent>
+      <xs:extension base="position">
+        <xs:sequence>
+          <xs:element name="coords" type="coord" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="timestamp">
+    <xs:sequence/>
+    <xs:attribute name="date" type="xs:dateTime"/>
+  </xs:complexType>
+
+  <xs:complexType name="dataType">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="blockage">
+    <xs:complexContent>
+      <xs:extension base="dataType">
+        <xs:sequence>
+          <xs:element ref="image" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="image">
+    <xs:sequence/>
+    <xs:attribute name="url" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="delivery">
+    <xs:complexContent>
+      <xs:extension base="dataType">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="depth">
+    <xs:complexContent>
+      <xs:extension base="dataType">
+        <xs:sequence>
+          <xs:element name="depth" type="xs:float"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="flow">
+    <xs:complexContent>
+      <xs:extension base="dataType">
+        <xs:sequence>
+          <xs:element name="flow" type="xs:float"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="gate">
+    <xs:complexContent>
+      <xs:extension base="dataType">
+        <xs:sequence>
+          <xs:element name="position" type="xs:float"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="strandedPerson">
+    <xs:sequence>
+      <xs:element ref="image" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="waterEdge">
+    <xs:complexContent>
+      <xs:extension base="dataType">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
+
