@@ -162,9 +162,13 @@
   </xs:complexType>
 
   <xs:complexType name="strandedPerson">
-    <xs:sequence>
-      <xs:element ref="image" minOccurs="0"/>
-    </xs:sequence>
+    <xs:complexContent>
+      <xs:extension base="dataType">
+        <xs:sequence>
+          <xs:element ref="image" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="waterEdge">

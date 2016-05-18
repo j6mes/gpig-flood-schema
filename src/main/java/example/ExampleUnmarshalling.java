@@ -16,7 +16,7 @@ import java.util.HashSet;
 /**
  * Created by james on 12/05/2016.
  */
-public class TestingUnmarshall {
+public class ExampleUnmarshalling {
     public static void main(String[] args) throws JAXBException {
         String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
                 "<gpigdata>\n" +

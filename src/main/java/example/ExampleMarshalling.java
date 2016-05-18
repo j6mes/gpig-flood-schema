@@ -14,7 +14,7 @@ import java.util.HashSet;
 /**
  * Created by james on 12/05/2016.
  */
-public class Testing {
+public class ExampleMarshalling {
     public static void main(String[] args) {
         exampleCoord();
         exampleTimestamp();
