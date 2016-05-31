@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  */
 
 @XmlRootElement(name="position")
-@XmlSeeAlso({Point.class,BoundingBox.class,Polar.class,Poly.class})
+@XmlSeeAlso({Arc.class,Point.class,BoundingBox.class,Polar.class,Poly.class})
 public class Position {
 
 }
